@@ -116,7 +116,7 @@ class _FormWidgetState extends State<_FormWidget> {
         ),
         Row(
           children: [
-            TextButton(
+            ElevatedButton(
               onPressed: _auth,
               style: ButtonStyle(
                 padding: MaterialStateProperty.all(
