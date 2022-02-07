@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movie_db/theme/app_colors.dart';
 import 'package:movie_db/widgets/auth/auth_widget.dart';
-import 'package:movie_db/widgets/main_screen/main_screen.dart';
-import 'package:movie_db/widgets/error_screen/error_widget.dart';
+import 'package:movie_db/widgets/main_screen/main_screen_widget.dart';
+import 'package:movie_db/widgets/error_screen/error_screen_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           // изменяю цвет фона AppBar
-          backgroundColor: Color.fromRGBO(3, 37, 65, 1),
+          backgroundColor: AppColors.mainDarkBlue,
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: AppColors.mainDarkBlue,
+          // цвет иконки, когда активна
+          selectedItemColor: Colors.white,
+          // цвет иконки, когда не активна
+          unselectedItemColor: Colors.grey,
         ),
       ),
       // указываю имя первого экрана AuthWidget

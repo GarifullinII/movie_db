@@ -35,8 +35,8 @@ class _FormWidget extends StatefulWidget {
 
 class _FormWidgetState extends State<_FormWidget> {
   // два контроллера
-  final _loginTextController = TextEditingController();
-  final _passwordTextController = TextEditingController();
+  final _loginTextController = TextEditingController(text: 'admin');
+  final _passwordTextController = TextEditingController(text: 'admin');
   String? errorText = null;
 
   @override
