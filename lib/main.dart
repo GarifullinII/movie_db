@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_db/widgets/auth/auth_widget.dart';
+import 'package:movie_db/widgets/main_screen/main_screen.dart';
+import 'package:movie_db/widgets/error_screen/error_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,29 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color.fromRGBO(3, 37, 65, 1),
         ),
       ),
-      home: const AuthWidget(),
+      // указываю имя первого экрана AuthWidget
+      initialRoute: '/auth',
+      // описываю маршруты которые есть
+      routes: {
+        '/auth': (context) => const AuthWidget(),
+        '/main_screen': (context) => const MainScreenWidget(),
+        '/error_screen': (context) => const ErrorScreenWidget(),
+      },
+      // генерация route, в случае если не найдены указанные routes страницы
+      // всегда позволяет вернуться куда-нибудь
+      // onGenerateRoute: (RouteSettings settings) {
+      //   return MaterialPageRoute(
+      //     builder: (context) {
+      //       return const Scaffold(
+      //         body: Center(
+      //           child: Text(
+      //             'Ooops navigation error',
+      //           ),
+      //         ),
+      //       );
+      //     },
+      //   );
+      // },
     );
   }
 }

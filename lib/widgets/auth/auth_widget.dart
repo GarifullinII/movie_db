@@ -160,10 +160,13 @@ class _FormWidgetState extends State<_FormWidget> {
 
     if (login == 'admin' && password == 'admin') {
       errorText = null;
-      print('open app');
+
+      // открывает новую страницу, нет возможности вернуться на предыдущую страницу
+      Navigator.pushReplacementNamed(context, '/main_screen');
+
     } else {
       errorText = 'Invalid login or password';
-      print('show error');
+      Navigator.pushNamed(context, '/error_screen');
     }
     setState(() {});
   }
