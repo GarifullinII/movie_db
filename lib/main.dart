@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movie_db/presentation/ui/widgets/auth/auth_widget.dart';
 import 'package:movie_db/presentation/ui/widgets/error_screen/error_screen_widget.dart';
 import 'package:movie_db/presentation/ui/widgets/main_screen/main_screen_widget.dart';
 import 'package:movie_db/theme/app_colors.dart';
+
+import 'generated/l10n.dart';
 
 
 void main() {
@@ -15,6 +18,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       title: 'Flutter Demo',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
