@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movie_db/presentation/ui/widgets/auth/auth_widget.dart';
+import 'package:movie_db/presentation/ui/widgets/error_screen/error_screen_widget.dart';
+import 'package:movie_db/presentation/ui/widgets/main_screen/main_screen_widget.dart';
 import 'package:movie_db/theme/app_colors.dart';
-import 'package:movie_db/widgets/auth/auth_widget.dart';
-import 'package:movie_db/widgets/main_screen/main_screen_widget.dart';
-import 'package:movie_db/widgets/error_screen/error_screen_widget.dart';
+
 
 void main() {
   runApp(const MyApp());
