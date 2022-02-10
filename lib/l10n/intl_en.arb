@@ -1,3 +1,11 @@
 {
-  "auth_title": "Login to your account"
+  "auth_w_title": "Login to your account",
+  "header_w_register": "You must be logged into your account in order to use the edits and features of the TMDB rankings, as well as receive personalized recommendations. If you don't have an account, registering one is free and easy.",
+  "header_w_register_button": "Register",
+  "header_w_verify": "If you registered but did not receive a confirmation email, please click here to resend the email.",
+  "header_w_verify_button": "Verify email",
+  "form_w_username": "Username",
+  "form_w_password": "Password",
+  "form_w_login": "Login",
+  "form_w_reset_password": "Reset password"
 }

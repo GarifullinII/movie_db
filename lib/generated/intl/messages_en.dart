@@ -22,7 +22,20 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "auth_title":
-            MessageLookupByLibrary.simpleMessage("Login to your account")
+        "auth_w_title":
+            MessageLookupByLibrary.simpleMessage("Login to your account"),
+        "form_w_login": MessageLookupByLibrary.simpleMessage("Login"),
+        "form_w_password": MessageLookupByLibrary.simpleMessage("Password"),
+        "form_w_reset_password":
+            MessageLookupByLibrary.simpleMessage("Reset password"),
+        "form_w_username": MessageLookupByLibrary.simpleMessage("Username"),
+        "header_w_register": MessageLookupByLibrary.simpleMessage(
+            "You must be logged into your account in order to use the edits and features of the TMDB rankings, as well as receive personalized recommendations. If you don\'t have an account, registering one is free and easy."),
+        "header_w_register_button":
+            MessageLookupByLibrary.simpleMessage("Register"),
+        "header_w_verify": MessageLookupByLibrary.simpleMessage(
+            "If you registered but did not receive a confirmation email, please click here to resend the email."),
+        "header_w_verify_button":
+            MessageLookupByLibrary.simpleMessage("Verify email")
       };
 }

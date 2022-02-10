@@ -51,10 +51,90 @@ class S {
   }
 
   /// `Login to your account`
-  String get auth_title {
+  String get auth_w_title {
     return Intl.message(
       'Login to your account',
-      name: 'auth_title',
+      name: 'auth_w_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You must be logged into your account in order to use the edits and features of the TMDB rankings, as well as receive personalized recommendations. If you don't have an account, registering one is free and easy.`
+  String get header_w_register {
+    return Intl.message(
+      'You must be logged into your account in order to use the edits and features of the TMDB rankings, as well as receive personalized recommendations. If you don\'t have an account, registering one is free and easy.',
+      name: 'header_w_register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get header_w_register_button {
+    return Intl.message(
+      'Register',
+      name: 'header_w_register_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you registered but did not receive a confirmation email, please click here to resend the email.`
+  String get header_w_verify {
+    return Intl.message(
+      'If you registered but did not receive a confirmation email, please click here to resend the email.',
+      name: 'header_w_verify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify email`
+  String get header_w_verify_button {
+    return Intl.message(
+      'Verify email',
+      name: 'header_w_verify_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username`
+  String get form_w_username {
+    return Intl.message(
+      'Username',
+      name: 'form_w_username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get form_w_password {
+    return Intl.message(
+      'Password',
+      name: 'form_w_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get form_w_login {
+    return Intl.message(
+      'Login',
+      name: 'form_w_login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset password`
+  String get form_w_reset_password {
+    return Intl.message(
+      'Reset password',
+      name: 'form_w_reset_password',
       desc: '',
       args: [],
     );
