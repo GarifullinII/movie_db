@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_db/presentation/ui/widgets/movie_list/movie_list.dart';
 
 class MainScreenWidget extends StatefulWidget {
   const MainScreenWidget({Key? key}) : super(key: key);
@@ -30,9 +31,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     Text(
       'News',
     ),
-    Text(
-      'Movies',
-    ),
+    MovieListWidget(),
     Text(
       'TV show',
     ),
