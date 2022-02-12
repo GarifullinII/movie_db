@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:movie_db/resources/resources.dart';
 
 // создаю класс и конструтор где хранятся данные о фильмах
-class Movies {
+class Movie {
   final String imageMovie;
   final String nameMovie;
   final String dateMovie;
   final String descriptionMovie;
 
-  Movies({
+  Movie({
     required this.imageMovie,
     required this.nameMovie,
     required this.dateMovie,
@@ -24,102 +24,159 @@ class MovieListWidget extends StatefulWidget {
 }
 
 class _MovieListWidgetState extends State<MovieListWidget> {
+  // список с фильмами
+  final _movies = [
+    Movie(
+      imageMovie: Images.godfather,
+      nameMovie: 'The Godfather',
+      dateMovie: 'March 14, 1972',
+      descriptionMovie:
+          'Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.',
+    ),
+    Movie(
+      imageMovie: Images.shawshank,
+      nameMovie: 'The Shawshank Redemption',
+      dateMovie: 'September 23, 1994',
+      descriptionMovie:
+          'Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden.',
+    ),
+    Movie(
+      imageMovie: Images.schindler,
+      nameMovie: 'Schindler List',
+      dateMovie: 'November 30, 1993',
+      descriptionMovie:
+          'The true story of how businessman Oskar Schindler saved over a thousand Jewish lives from the Nazis while they worked as slaves in his factory during World War II.',
+    ),
+    Movie(
+      imageMovie: Images.gabriel,
+      nameMovie: 'Gabriel Inferno Part III',
+      dateMovie: 'November 19, 2020',
+      descriptionMovie:
+          'The final part of the film adaption of the erotic romance novel Gabriel Inferno written by an anonymous Canadian author under the pen name Sylvain Reynard.',
+    ),
+  ];
+
+  // задаю контроллер для отслеживания вводимого текста
+  final _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 6,
-      itemExtent: 180,
-      itemBuilder: (BuildContext context, int index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          // контейнер со скругленной и оформленной рамкой
-          child: Stack(
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                      color: Colors.black.withOpacity(0.2),
-                    ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                    // добавляю тень и скругление для тени
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 8, // размытие тени
-                        offset: const Offset(0, 2), // смещение тени по оси x, y
-                      )
-                    ]),
-                child: Row(
-                  children: [
-                    ClipPath(
-                      clipper: MyClipper(),
-                      child: const Image(
-                        image: AssetImage(Images.godfather),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          SizedBox(
-                            height: 20,
+    return Stack(
+      children: [
+        ListView.builder(
+          padding: const EdgeInsets.only(top: 70),
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          itemCount: _movies.length,
+          itemExtent: 180,
+          itemBuilder: (BuildContext context, int index) {
+            // создаю переменную movie
+            // она отображает конкретный фильм из массива _movies по index
+            final movie = _movies[index];
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              // контейнер со скругленной и оформленной рамкой
+              child: Stack(
+                children: [
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.black.withOpacity(0.2),
+                        ),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        // добавляю тень и скругление для тени
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8, // размытие тени
+                            offset:
+                                const Offset(0, 2), // смещение тени по оси x, y
+                          )
+                        ]),
+                    child: Row(
+                      children: [
+                        ClipPath(
+                          clipper: MyClipper(),
+                          child: Image(
+                            image: AssetImage(movie.imageMovie),
                           ),
-                          Text(
-                            'The Godfather',
-                            maxLines:
-                                1, // задаю 1 строку для текста // при получении данных  с сервера строка может быть очень длинной, возникнет ошибка
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                movie.nameMovie,
+                                maxLines:
+                                    1, // задаю 1 строку для текста // при получении данных  с сервера строка может быть очень длинной, возникнет ошибка
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                movie.dateMovie,
+                                maxLines: 1, // задаю 1 строку для текста
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Text(
+                                movie.descriptionMovie,
+                                maxLines: 2, // задаю 2 строки для текста
+                                overflow: TextOverflow
+                                    .ellipsis, // добавление ... после обрезания текста
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'March 14, 1972',
-                            maxLines: 1, // задаю 1 строку для текста
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Text(
-                            'Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.',
-                            maxLines: 2, // задаю 2 строки для текста
-                            overflow: TextOverflow
-                                .ellipsis, // добавление ... после обрезания текста
-                          ),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      width: 20,
+                  ),
+                  Material(
+                    // оборачиваю InkWell чтобы получить эффект таба по карточке видимым для пользователя
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(10.0),
+                      onTap: () {},
                     ),
-                  ],
-                ),
+                  )
+                ],
               ),
-              Material(
-                // оборачиваю InkWell чтобы получить эффект таба по карточке видимым для пользователя
-                color: Colors.transparent,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(10.0),
-                  onTap: () {},
-                ),
-              )
-            ],
+            );
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: TextField(
+            controller: _searchController,
+            decoration: InputDecoration(
+              labelText: 'Search',
+              filled: true,
+              fillColor: Colors.white.withAlpha(235),
+              border: const OutlineInputBorder(),
+            ),
           ),
-        );
-      },
+        ),
+      ],
     );
   }
 }

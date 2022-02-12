@@ -27,12 +27,12 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   }
 
   // получение вкладок при нажатии на иконки
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
+  static final List<Widget> _widgetOptions = <Widget>[
+    const Text(
       'News',
     ),
-    MovieListWidget(),
-    Text(
+    const MovieListWidget(),
+    const Text(
       'TV show',
     ),
   ];

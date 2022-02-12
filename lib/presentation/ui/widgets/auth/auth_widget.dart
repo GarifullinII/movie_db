@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_db/generated/l10n.dart';
 import 'package:movie_db/theme/app_button_style.dart';
@@ -103,7 +104,7 @@ class _FormWidgetState extends State<_FormWidget> {
   // два контроллера
   final _loginTextController = TextEditingController(text: 'admin');
   final _passwordTextController = TextEditingController(text: 'admin');
-  String? errorText = null;
+  String? errorText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -237,6 +238,8 @@ class _FormWidgetState extends State<_FormWidget> {
   }
 
   void _resetPassword() {
-    print('reset password');
+    if (kDebugMode) {
+      print('reset password');
+    }
   }
 }
