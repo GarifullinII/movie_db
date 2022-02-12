@@ -1,6 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:movie_db/resources/resources.dart';
 
+// создаю класс и конструтор где хранятся данные о фильмах
+class Movies {
+  final String imageMovie;
+  final String nameMovie;
+  final String dateMovie;
+  final String descriptionMovie;
+
+  Movies({
+    required this.imageMovie,
+    required this.nameMovie,
+    required this.dateMovie,
+    required this.descriptionMovie,
+  });
+}
+
 class MovieListWidget extends StatefulWidget {
   const MovieListWidget({Key? key}) : super(key: key);
 
@@ -93,7 +108,8 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                   ],
                 ),
               ),
-              Material( // оборачиваю InkWell чтобы получить эффект таба по карточке видимым для пользователя
+              Material(
+                // оборачиваю InkWell чтобы получить эффект таба по карточке видимым для пользователя
                 color: Colors.transparent,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(10.0),
