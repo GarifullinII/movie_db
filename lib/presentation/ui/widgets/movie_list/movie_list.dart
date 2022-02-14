@@ -56,8 +56,37 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     ),
   ];
 
+  var _filteredMovies = <Movie> [];
+
   // задаю контроллер для отслеживания вводимого текста
   final _searchController = TextEditingController();
+
+  // добавляю функцию, она будет вызываться каждый раз, когда пользователь будет вводить что-то
+  void _searchMovies() {
+    // если текст вводимый в контроллере не пустой
+    final query = _searchController.text; // query - текст вводимый пользователем
+    if (query.isNotEmpty) { // проверяю пустой ли массив
+      _filteredMovies = _movies.where((Movie movie) {
+        // переводим буквы в нижний регистр, также query перводим в нижний регистр
+        return movie.nameMovie.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    } else {
+      _filteredMovies = _movies;
+    }
+    // состояние изменилось, поэтому добавляю setState
+    setState(() {});
+  }
+
+  // обработка ввода текста
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(
+      () {
+        _searchMovies();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +95,12 @@ class _MovieListWidgetState extends State<MovieListWidget> {
         ListView.builder(
           padding: const EdgeInsets.only(top: 70),
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          itemCount: _movies.length,
+          itemCount: _filteredMovies.length, // показываю _filteredMovies в списке, из него буду доставать элементы
           itemExtent: 180,
           itemBuilder: (BuildContext context, int index) {
             // создаю переменную movie
             // она отображает конкретный фильм из массива _movies по index
-            final movie = _movies[index];
+            final movie = _filteredMovies[index];
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               // контейнер со скругленной и оформленной рамкой
