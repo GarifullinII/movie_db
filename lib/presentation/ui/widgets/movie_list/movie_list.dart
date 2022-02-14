@@ -56,7 +56,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     ),
   ];
 
-  var _filteredMovies = <Movie> [];
+  var _filteredMovies = <Movie>[];
 
   // задаю контроллер для отслеживания вводимого текста
   final _searchController = TextEditingController();
@@ -64,8 +64,10 @@ class _MovieListWidgetState extends State<MovieListWidget> {
   // добавляю функцию, она будет вызываться каждый раз, когда пользователь будет вводить что-то
   void _searchMovies() {
     // если текст вводимый в контроллере не пустой
-    final query = _searchController.text; // query - текст вводимый пользователем
-    if (query.isNotEmpty) { // проверяю пустой ли массив
+    final query =
+        _searchController.text; // query - текст вводимый пользователем
+    if (query.isNotEmpty) {
+      // проверяю пустой ли массив
       _filteredMovies = _movies.where((Movie movie) {
         // переводим буквы в нижний регистр, также query перводим в нижний регистр
         return movie.nameMovie.toLowerCase().contains(query.toLowerCase());
@@ -81,6 +83,8 @@ class _MovieListWidgetState extends State<MovieListWidget> {
   @override
   void initState() {
     super.initState();
+
+    _filteredMovies = _movies;
     _searchController.addListener(
       () {
         _searchMovies();
@@ -95,7 +99,8 @@ class _MovieListWidgetState extends State<MovieListWidget> {
         ListView.builder(
           padding: const EdgeInsets.only(top: 70),
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          itemCount: _filteredMovies.length, // показываю _filteredMovies в списке, из него буду доставать элементы
+          itemCount: _filteredMovies
+              .length, // показываю _filteredMovies в списке, из него буду доставать элементы
           itemExtent: 180,
           itemBuilder: (BuildContext context, int index) {
             // создаю переменную movie

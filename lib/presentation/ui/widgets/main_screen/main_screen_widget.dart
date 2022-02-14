@@ -26,25 +26,26 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     });
   }
 
-  // получение вкладок при нажатии на иконки
-  static final List<Widget> _widgetOptions = <Widget>[
-    const Text(
-      'News',
-    ),
-    const MovieListWidget(),
-    const Text(
-      'TV show',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('TMDB'),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedTab),
+      // особенность виджета в том, что его дети существуют одновременно, но отображается только один из них
+      // следовательно пр переключении ни один из них не удаляется из памяти и их состояние также сохраняется
+      // больше расход памяти (до ввода redux буду использовать)
+      body: IndexedStack(
+        index: _selectedTab,
+        children: const [
+          Text(
+            'News',
+          ),
+          MovieListWidget(),
+          Text(
+            'TV show',
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         // задаю индекс
