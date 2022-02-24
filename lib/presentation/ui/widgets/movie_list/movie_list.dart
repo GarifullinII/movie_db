@@ -3,12 +3,14 @@ import 'package:movie_db/resources/resources.dart';
 
 // создаю класс и конструтор где хранятся данные о фильмах
 class Movie {
+  final int id;
   final String imageMovie;
   final String nameMovie;
   final String dateMovie;
   final String descriptionMovie;
 
   Movie({
+    required this.id,
     required this.imageMovie,
     required this.nameMovie,
     required this.dateMovie,
@@ -27,6 +29,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
   // список с фильмами
   final _movies = [
     Movie(
+      id: 1,
       imageMovie: Images.godfather,
       nameMovie: 'The Godfather',
       dateMovie: 'March 14, 1972',
@@ -34,6 +37,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.',
     ),
     Movie(
+      id: 2,
       imageMovie: Images.shawshank,
       nameMovie: 'The Shawshank Redemption',
       dateMovie: 'September 23, 1994',
@@ -41,6 +45,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden.',
     ),
     Movie(
+      id: 3,
       imageMovie: Images.schindler,
       nameMovie: 'Schindler List',
       dateMovie: 'November 30, 1993',
@@ -48,6 +53,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'The true story of how businessman Oskar Schindler saved over a thousand Jewish lives from the Nazis while they worked as slaves in his factory during World War II.',
     ),
     Movie(
+      id: 4,
       imageMovie: Images.gabriel,
       nameMovie: 'Gabriel Inferno Part III',
       dateMovie: 'November 19, 2020',
@@ -90,6 +96,11 @@ class _MovieListWidgetState extends State<MovieListWidget> {
         _searchMovies();
       },
     );
+  }
+
+  void _onMovieTap(int index) {
+    final id = _movies[index].id;
+    Navigator.of(context).pushNamed('/main_screen/movie_details');
   }
 
   @override
@@ -190,7 +201,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(10.0),
-                      onTap: () {},
+                      onTap: () => _onMovieTap(index),
                     ),
                   )
                 ],

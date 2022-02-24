@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movie_db/presentation/ui/widgets/auth/auth_widget.dart';
 import 'package:movie_db/presentation/ui/widgets/error_screen/error_screen_widget.dart';
 import 'package:movie_db/presentation/ui/widgets/main_screen/main_screen_widget.dart';
+import 'package:movie_db/presentation/ui/widgets/movie_details/movie_details_widget.dart';
 import 'package:movie_db/theme/app_colors.dart';
 
 import 'generated/l10n.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/auth': (context) => const AuthWidget(),
         '/main_screen': (context) => const MainScreenWidget(),
+        '/main_screen/movie_details': (context) => const MovieDetailsWidget(),
         '/error_screen': (context) => const ErrorScreenWidget(),
       },
       // генерация route, в случае если не найдены указанные routes страницы
