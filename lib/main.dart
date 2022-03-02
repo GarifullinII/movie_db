@@ -46,7 +46,16 @@ class MyApp extends StatelessWidget {
       routes: {
         '/auth': (context) => const AuthWidget(),
         '/main_screen': (context) => const MainScreenWidget(),
-        '/main_screen/movie_details': (context) => const MovieDetailsWidget(),
+        '/main_screen/movie_details': (context) {
+
+          final arguments = ModalRoute.of(context)?.settings.arguments;
+
+          if (arguments is int) {
+            return MovieDetailsWidget(movieId: arguments);
+          } else {
+            return const ErrorScreenWidget();
+          }
+        },
         '/error_screen': (context) => const ErrorScreenWidget(),
       },
       // генерация route, в случае если не найдены указанные routes страницы
