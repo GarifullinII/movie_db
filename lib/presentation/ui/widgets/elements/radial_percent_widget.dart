@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class RadialPercentWidget extends StatefulWidget {
-  const RadialPercentWidget({Key? key}) : super(key: key);
+
+  final Widget child;
+  final double percent;
+  final Color fillColor;
+  final Color lineColor;
+  final Color filedColor;
+  final double lineWidth;
+
+  const RadialPercentWidget({
+    Key? key, required this.child, required this.percent, required this.fillColor, required this.lineColor, required this.filedColor, required this.lineWidth,
+
+  }) : super(key: key);
 
   @override
   _RadialPercentWidgetState createState() => _RadialPercentWidgetState();
@@ -12,11 +23,12 @@ class _RadialPercentWidgetState extends State<RadialPercentWidget> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
           child: SizedBox(
-            width: 100,
-            height: 100,
+            width: 20,
+            height: 20,
             child: RadialPercentWidgetForm(
               percent: 0.58,
               fillColor: Colors.black,
@@ -93,7 +105,6 @@ class MyPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-
     final arcRect = calculateArcsRect(size);
     drawBackground(canvas, size);
     drawFreeArc(canvas, arcRect);
@@ -130,16 +141,17 @@ class MyPainter extends CustomPainter {
   }
 
   void drawBackground(Canvas canvas, Size size) {
-     final paint = Paint();
-     paint.color = fillColor;
-     paint.style = PaintingStyle.fill;
+    final paint = Paint();
+    paint.color = fillColor;
+    paint.style = PaintingStyle.fill;
     canvas.drawOval(Offset.zero & size, paint);
   }
 
   Rect calculateArcsRect(Size size) {
     const lineMargin = 3;
     final offset = lineWidth / 2 + lineMargin;
-    final arcRect = Offset(offset, offset) & Size(size.width - offset * 2, size.height - offset * 2);
+    final arcRect = Offset(offset, offset) &
+        Size(size.width - offset * 2, size.height - offset * 2);
     return arcRect;
   }
 

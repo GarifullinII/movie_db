@@ -18,10 +18,13 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
       appBar: AppBar(
         title: const Text('The King`s Man'),
       ),
-      body: ListView(
-        children: const [
-          MovieDetailsMainInfoWidget(),
-        ],
+      body: ColoredBox(
+        color: const Color.fromRGBO(24, 23, 27, 1.0),
+        child: ListView(
+          children: const [
+            MovieDetailsMainInfoWidget(),
+          ],
+        ),
       ),
     );
   }
